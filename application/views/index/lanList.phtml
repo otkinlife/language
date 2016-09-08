@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table border='1px'><tr><th>Key</th><th>Value</th></tr>
+    <?php  foreach ($arr as $firKey => $firVal) { ?>
+        <tr><td bgcolor='aqua' colspan='2'><?=$firKey?></td></tr>
+        <?php  foreach ($firVal as $secKey =>$secVal) { ?>
+            <?php if (is_array($secVal)) {
+                foreach($secVal as $trdKey => $trdVal)
+            ?>
+                <tr><td><?=$secKey.'['.$trdKey.']'?></td><td><?=$trdVal?></td></tr>
+            <?php } else { ?>
+                <tr><td><?=$secKey?></td><td><?=$secVal?></td></tr>
+            <?php } ?>
+        <?php }?>
+    <?php } ?>
+</body>
+</html>
