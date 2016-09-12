@@ -1,19 +1,50 @@
 <?php
 class IndexController extends Common_Base {
 
-    public function indexAction() {//Ĭ��Action
+    //首页
+    public function indexAction() {//默认Action
         $this->getView()->display('index/index.phtml');
     }
 
-    //��ȡ�ļ�
+    //增加语言包页面
+    public function addLanPackagePageAction() {
+        $this->getView()->display('index/addPackage.phtml');
+    }
+
+    //新建语言包文件
+    public function addLanFileAction() {
+        try {
+            $file = $_GET['file'];
+            $filePath = APP_PATH.'/public/package/'.$file;
+            if(file_exists($filePath)){
+               $this->result(1, '该文件已经存在，请重新命名或者编辑该文件');
+                return;
+            }
+            $lanFile = fopen($filePath, "w+");
+            if(!$lanFile) {
+                $this->result(1, '新建文件失败');
+                return;
+            }
+            $this->result(0, '新建成功');
+        } catch(Exception $e) {
+            $this->result(1, '新建文件失败');
+        }
+    }
+
+    //修语言包页面
+    public function editLanPackagePageAction() {
+
+    }
+
+    //读取文件
     public function readLanAction() {
         $file = $_FILES;
         $arr = parse_ini_file($file['file']['tmp_name'],true);
         $this->getView()->assign('arr', $arr);
-        $this->getView()->display('index/lanList.phtml');
+        echo $this->getView()->render('index/lanList.phtml');
     }
 
-    //�Ƚ��ļ�
+    //比较文件
     public function compareAction() {
         $file = $_FILES;
         $firstLanguage = $this->getParam('first', 'CN');
@@ -31,7 +62,6 @@ class IndexController extends Common_Base {
         }
         echo $html;
     }
-
 }
 ?>
 

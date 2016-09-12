@@ -1,0 +1,76 @@
+@-webkit-keyframes greenPulse {
+    from { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+    50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
+    to { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+}
+.btn.green.button {
+    -webkit-animation-name: greenPulse;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    cursor:pointer;
+}
+.render {
+    color: #FFFFFF;
+    padding: 5px;
+    border-radius:3px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.position {
+    text-align: center;
+    margin-top: 50px;
+}
+.hide {
+    display: none;
+}
+.shadow {
+    top:0;
+    left:0;
+    position:fixed;
+    width:100%;
+    height:100%;
+    padding-top: 200px;
+    background:rgba(0,0,0,.5);
+}
+.content {
+    height: 30%;
+    left: 30%;
+    right: 30%;
+    background-color: #FFFFFF;
+    position: absolute;
+}
+.title {
+    border-bottom:1px solid #749a02;
+    padding:13px 20px;
+    font-size:20px;
+    color:#749a02;
+}
+.share_qd,.share_qx{
+    display:inline-block;
+    padding:10px 30px;
+    color: #FFFFFF;
+    background-color: #749a02;
+    cursor:pointer;
+}
+.content_c {
+    text-align: left;
+    padding: 40px;
+}
+
+.area {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+    padding: 10px;
+}
+
+input {
+    padding-left: 2px;
+    line-height: 25px;
+    background:transparent;
+    border:1px solid #749a02;
+    border-radius:3px;
+}
+select {
+    font-size: 20px;
+}

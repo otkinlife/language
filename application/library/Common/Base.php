@@ -10,4 +10,15 @@ class Common_Base extends Yaf_Controller_Abstract {
         //关闭视图自动渲染
         Yaf_Dispatcher::getInstance()->disableView();
     }
+
+    public function result($code, $msg, $other='') {
+        $res = array(
+            'code' => $code,
+            'msg' => $msg
+        );
+        if(!empty($other)) {
+            $res['data'] = $other;
+        }
+        echo json_encode($res);
+    }
 }

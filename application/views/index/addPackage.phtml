@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title>
+        语言包测试
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../../public/css/public.css">
+</head>
+<body>
+<h1>第一步</h1>
+<hr>
+<div class="position">
+    <p><a class="btn button green render" onclick="createWindow(1)">新建语言文件</a></p>
+    <p><a class="btn button green render" onclick="createWindow(2)">选择已有文件</a></p>
+</div>
+<div class="shadow hide">
+    <div class="content position">
+        <div class="title"></div>
+        <div class="content_c">
+            <p>文件名：<input id="fileName" type="text" placeholder="请输入新建语言包名"></p>
+            <p>后缀名：
+                <select>
+                    <option id="fileLastName" selected="selected" value=".ini">.INI</option>
+                </select>
+            </p>
+        </div>
+        <div class="area">
+            <span id="ok" class="share_qx ">确定</span>
+            <span id="cancel" class="share_qx ">取消</span>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../public/js/jquery.min.js" type="text/javascript"></script>
+<script>
+
+    //新建文件方式
+    function createWindow(flag) {
+        if(flag == 1) {
+            $('.shadow').show();
+            $('.title').html('新建语言文件');
+            return;
+        }
+        if(flag == 2) {
+            $('.title').html('选择已有文件');
+            window.location.href = "/Index/editLanPackagePage";
+        }
+    }
+
+    $(function() {
+        //点击取消
+        $('#cancel').on('click', function () {
+            $('.shadow').hide();
+        });
+
+        $('#ok').on('click', function() {
+            var file = $('#fileName').val() + $('#fileLastName').val();
+            $.ajax({
+                type: 'GET',
+                url: 'Index/addLanFile',
+                data: {file:file},
+                dataType: 'json',
+                success: function (data) {
+                    alert(data.msg);
+                }
+            })
+        });
+    })
+</script>
+</html>
